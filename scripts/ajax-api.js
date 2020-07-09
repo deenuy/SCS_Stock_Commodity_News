@@ -75,7 +75,7 @@
   // ==========================================================
   
   // .on("click") function associated with the Search Button
-  $("#run-search").click(function(event) {
+  $("#run-search-01").click(function(event) {
       console.log("Search initiated!");
     // This line allows us to take advantage of the HTML "submit" property
     // This way we can hit enter on the keyboard and it registers the search
@@ -87,7 +87,8 @@
 
     // Build the query URL for the ajax request to the NYT API
     var company = $("#search-term").val().trim();
-    var region = $("#start-year").val().trim();
+    // var region = $("#start-year").val().trim();
+    var region = 'US'
 
     // Make the AJAX request to the API - GETs the JSON data at the queryURL.
     // The data then gets passed as an argument to the updatePage function

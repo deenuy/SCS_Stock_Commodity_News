@@ -19,7 +19,7 @@
 	<script src="https://kit.fontawesome.com/3e0c607514.js" crossorigin="anonymous"></script> 
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
 
 	<title>Stock and Commodity News Website</title>
 </head>
@@ -37,10 +37,10 @@
 		<!-- Searchbar for user Input for discovering stocks and commodity news -->
         <div class="g-max-width-540 mx-auto g-mb-20">
             <div class="input-group">
-              <input type="text" class="form-control g-font-size-16 border-0" placeholder="Search words with regular expressions..." 
+              <input type="text" class="form-control g-font-size-16 border-0" id="search-term" placeholder="Search words with regular expressions..." 
                     aria-label="Search words with regular expressions...">
               <div class="input-group-append">
-                <button class="btn btn-primary g-font-size-18 g-py-12 g-px-25 search-icon" type="submit">
+                <button class="btn btn-primary g-font-size-18 g-py-12 g-px-25 search-icon" id="run-search-01" type="submit">
                   <i class="fa fa-search"></i>
                 </button>
               </div>
@@ -116,10 +116,9 @@
 					
 					<!-- card Heading for the retrieved articles box -->
 					<div class="card-header">
-						<strong>
-							<i class="fa fa-table"></i> Top Statistics listings</strong>
+						<strong><i class="fa fa-table"></i> Top Statistics listings</strong>
 					</div>
-						
+					
 					<!-- This main card will hold each of the resulting articles -->
 					<article class="card-body" id="article-section">
 					</article>
