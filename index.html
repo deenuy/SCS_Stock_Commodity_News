@@ -4,140 +4,129 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-	<!-- Bootstrap CDN for styling -->
+    <!-- Bootstrap CDN for styling -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" 
 	crossorigin="anonymous">
 	
 	<!-- Font Awesome CSS Icons (For cool glyphicons) -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
-	
-	<!-- Custom CSS -->
-	<link rel="stylesheet" href="./css/style.css">
-	
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    
+	<!-- Google Font CDN -->
+	<link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap" rel="stylesheet">
+    x
 	<!-- Custom icons CDN -->
-	<script src="https://kit.fontawesome.com/3e0c607514.js" crossorigin="anonymous"></script>
-	
+	<script src="https://kit.fontawesome.com/3e0c607514.js" crossorigin="anonymous"></script> 
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="./style.css">
+
 	<title>Stock and Commodity News Website</title>
 </head>
 
 <body>
 
 <header>
-	<!-- Page 1 = Search bar and title header-->
-	<div class="searchbar">
-		Here is some trial text for the searchbar area in HTML
-	</div>
-	
-	<!-- Main Bootstrap Search -->
-	<div class="container">
-		
-		<!-- Jumbotron for Title -->
-		<div class="jumbotron" style="background-color: #20315A ; color: white;">
-			<h1 class="text-center">
-				<strong>
-					<i class="fa fa-newspaper-o"></i> Stock and Commodity News</strong>
-				</h1>
-			</div>
-			
-			<!-- Row for Searching New York Times -->
-			<div class="row">
-				<div class="col-sm-12">
-					<br>
-					<!-- First card is for handling the search parameters -->
-					<div class="card">
-						<div class="card-header">
-							<strong>
-								<i class="fa fa-list-alt"></i> Search Parameters</strong>
-							</div>
-							<div class="card-body">
-								
-								<!-- Here we create an HTML Form for handling the inputs-->
-								<form role="form">
-									
-									<!-- Here we create the text box for capturing the search term-->
-									<div class="form-group">
-										<label for="search">Company:</label>
-										<input type="text" class="form-control" id="search-term" value="AAPL">
-									</div>
-									
-									<!-- Here we capture the Start Year Parameter-->
-									<div class="form-group">
-										<label for="start-year">Region (Optional):</label>
-										<input type="text" class="form-control" id="start-year" value="US">
-									</div>
-									
-									<!-- Here we capture the number of records that the user wants to retrieve  -->
-									<div class="form-group">
-										<label for="pwd">Number of Records to Retrieve:</label>
-										<select id="article-count" class="custom-select" aria-labelledby="dropdownMenuButton">
-											<option selected value="1">1</option>
-											<!-- Setting the option for 5 as default -->
-											<option value="5" selected>5</option>
-											<option value="10">10</option>
-										</select>
-									</div>
-									
-									<!-- Here we have our final submit button -->
-									<button type="submit" class="btn btn-default" id="run-search">
-										<i class="fa fa-search"></i> Search</button>
-										<button class="btn btn-default" id="clear-all">
-											<i class="fa fa-trash"></i> Clear Results</button>
-											
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
+	<! Search bar and title header-->
+    <div class="container">
+		<!-- Background image -->
+        <div class="background"></div> 
+        <div class="heading">
+            <h1 class="h">Discover <span class="headline-color">Stock & Commodity</span> Things</h1>
+		</div>
+		<!-- Searchbar for user Input for discovering stocks and commodity news -->
+        <div class="g-max-width-540 mx-auto g-mb-20">
+            <div class="input-group">
+              <input type="text" class="form-control g-font-size-16 border-0" placeholder="Search words with regular expressions..." 
+                    aria-label="Search words with regular expressions...">
+              <div class="input-group-append">
+                <button class="btn btn-primary g-font-size-18 g-py-12 g-px-25 search-icon" type="submit">
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+            </div>
+		  </div>
+		  <!-- Multi-field Searchbar for user Input for discovering stocks and commodity news -->
+          <div class="search-bar">
+            <form action="#">
+              <div class="row" style="width: 76rem;">
+                <div class="form-group col-lg-4">
+                  <input type="search" class="form-control g-font-size-16 border-0" style="width: 22rem;" name="search" placeholder="What are you searching for?">
+                </div>
+                <div class="form-group col-lg-3">
+                  <input type="text" class="form-control g-font-size-16 border-0" style="width: 16rem;" name="location" placeholder="Location" id="location">
+                  <label for="location" class="location"><i class="fa fa-dot-circle-o"></i></label>
+                </div>
+                <div class="form-group col-lg-3">
+                    <div class="dropdown bootstrap-select listing-categories form-control" style="width: 19rem;">
+                        <select title="Categories <i class=&quot;fa fa-angle-down&quot;></i>" class="listing-categories form-control" tabindex="-98">
+                            <option class="bs-title-option" value=""></option>
+                            <option value="small">Restaurants</option>
+                            <option value="medium">Hotels</option>
+                            <option value="large">Cafes</option>
+                            <option value="x-large">Garages</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-lg-2">
+                    <button class="btn btn-primary g-font-size-18 g-py-12 g-px-25 search-icon" type="submit" style="height: 60px;">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        <div class="overlay"></div>
+    </div>
 </header>
 
 <main>
 	<!-- Page 2 = Company stock news feed, Sector news, Industry news -->
-	
-	<!-- This row will handle all of the retrieved articles -->
-	<section class="row">
-		<div class="col-sm-12">
-			<br>
-			
-			<!-- This card will initially be made up of a card and wells for each of the articles retrieved -->
-			<div class="card">
+	<div class="container" style="width: 120rem; padding-left: 5rem; margin: 0;">
+		<!-- This row will handle all of the retrieved articles -->
+		<section class="row">
+			<div class="col-sm-12">
+				<br>
 				
-				<!-- card Heading for the retrieved articles box -->
-				<div class="card-header">
-					<strong>
-						<i class="fa fa-table"></i> Top Articles</strong>
-				</div>
+				<!-- This card will initially be made up of a card and wells for each of the articles retrieved -->
+				<div class="card">
 					
-				<!-- This main card will hold each of the resulting articles -->
-				<article class="card-body" id="article-section">
-				</article>
+					<!-- card Heading for the retrieved articles box -->
+					<div class="card-header">
+						<strong>
+							<i class="fa fa-table"></i> Top Articles</strong>
+					</div>
+						
+					<!-- This main card will hold each of the resulting articles -->
+					<article class="card-body" id="article-section">
+					</article>
+				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 
-	<!-- Page 3 = Company stock stats, Sector stats, Industry stats -->
-	
-	<!-- This row will handle all of the retrieved articles -->
-	<section class="row">
-		<div class="col-sm-12">
-			<br>
-			
-			<!-- This card will initially be made up of a card and wells for each of the articles retrieved -->
-			<div class="card">
+		<!-- Page 3 = Company stock stats, Sector stats, Industry stats -->
+
+		<!-- This row will handle all of the retrieved articles -->
+		<section class="row">
+			<div class="col-sm-12">
+				<br>
 				
-				<!-- card Heading for the retrieved articles box -->
-				<div class="card-header">
-					<strong>
-						<i class="fa fa-table"></i> Top Statistics listings</strong>
-				</div>
+				<!-- This card will initially be made up of a card and wells for each of the articles retrieved -->
+				<div class="card">
 					
-				<!-- This main card will hold each of the resulting articles -->
-				<article class="card-body" id="article-section">
-				</article>
+					<!-- card Heading for the retrieved articles box -->
+					<div class="card-header">
+						<strong>
+							<i class="fa fa-table"></i> Top Statistics listings</strong>
+					</div>
+						
+					<!-- This main card will hold each of the resulting articles -->
+					<article class="card-body" id="article-section">
+					</article>
+				</div>
 			</div>
-		</div>
-	</section>
-
+		</section>
+	</div>
 </main>
 
 <footer>
