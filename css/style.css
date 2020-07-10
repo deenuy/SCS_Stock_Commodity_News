@@ -7,6 +7,7 @@ body {
 .background{
   background-image: url(../assets/img/cool-background.png), linear-gradient(#eb01a5, #d13531);
   background-size: 100%;
+  width: 100%;
   height: 520px;
   position: fixed;
   left: 0;
@@ -15,6 +16,7 @@ body {
   filter: blur(1px);
   -webkit-filter: blur(1px);
 }
+
 .heading{
   z-index: 2;
   display: flex;
@@ -84,4 +86,14 @@ h1{
 /* Page 1 */
 .row {
   padding-top: 3.5rem;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.news-placeholder{
+  min-width: 740px;
 }
