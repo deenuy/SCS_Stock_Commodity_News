@@ -38,7 +38,7 @@
         <div class="g-max-width-540 mx-auto g-mb-20">
             <div class="input-group">
               <input type="text" class="form-control g-font-size-16 border-0" id="search-term" placeholder="Search words with regular expressions..." 
-                    aria-label="Search words with regular expressions...">
+                    aria-label="Search words with regular expressions..." value="AAPL">
               <div class="input-group-append">
                 <button class="btn btn-primary g-font-size-18 g-py-12 g-px-25 search-icon" id="run-search-01" type="submit">
                   <i class="fa fa-search"></i>
@@ -50,15 +50,15 @@
           <div class="search-bar">
             <form action="#">
               <div class="row" style="width: 76rem;">
-                <div class="form-group col-lg-4">
-                  <input type="search" class="form-control g-font-size-16 border-0" style="width: 22rem;" name="search" placeholder="What are you searching for?">
+                <div class="form-group col-sm-4">
+                  <input type="search" class="form-control g-font-size-16 border-0" id="auto-suggestion" style="width: 22rem;" name="search" placeholder="What are you searching for?">
                 </div>
-                <div class="form-group col-lg-3">
+                <div class="form-group col-sm-3">
                   <input type="text" class="form-control g-font-size-16 border-0" style="width: 16rem;" name="location" placeholder="Location" id="location">
                   <label for="location" class="location"><i class="fa fa-dot-circle-o"></i></label>
                 </div>
-                <div class="form-group col-lg-3">
-                    <div class="dropdown bootstrap-select listing-categories form-control" style="width: 19rem;">
+                <div class="form-group col-sm-3">
+                    <div class="dropdown bootstrap-select listing-categories">
                         <select title="Categories <i class=&quot;fa fa-angle-down&quot;></i>" class="listing-categories form-control" tabindex="-98">
                             <option class="bs-title-option" value=""></option>
                             <option value="small">Restaurants</option>
@@ -81,50 +81,51 @@
 </header>
 
 <main>
-	<!-- Page 2 = Company stock news feed, Sector news, Industry news -->
-	<div class="container" style="width: 120rem; padding-left: 5rem; margin: 0;">
-		<!-- This row will handle all of the retrieved articles -->
-		<section class="row">
-			<div class="col-sm-12">
-				<br>
-				
-				<!-- This card will initially be made up of a card and wells for each of the articles retrieved -->
-				<div class="card">
+	<div class="row">
+		<div class="col-6 news-placeholder">
+			<!-- This row will handle all of the retrieved articles -->
+			<section class="row">
+				<div class="col-md-12">
+					<br>
 					
-					<!-- card Heading for the retrieved articles box -->
-					<div class="card-header">
-						<strong>
-							<i class="fa fa-table"></i> Top Articles</strong>
-					</div>
+					<!-- This card will initially be made up of a card and wells for each of the articles retrieved -->
+					<div class="card">
 						
-					<!-- This main card will hold each of the resulting articles -->
-					<article class="card-body" id="article-section">
-					</article>
-				</div>
-			</div>
-		</section>
-
-		<!-- Page 3 = Company stock stats, Sector stats, Industry stats -->
-
-		<!-- This row will handle all of the retrieved articles -->
-		<section class="row">
-			<div class="col-sm-12">
-				<br>
-				
-				<!-- This card will initially be made up of a card and wells for each of the articles retrieved -->
-				<div class="card">
-					
-					<!-- card Heading for the retrieved articles box -->
-					<div class="card-header">
-						<strong><i class="fa fa-table"></i> Top Statistics listings</strong>
+						<!-- card Heading for the retrieved articles box -->
+						<div class="card-header">
+							<strong>
+								<i class="fa fa-table"></i> Top Articles</strong>
+						</div>
+							
+						<!-- This main card will hold each of the resulting articles -->
+						<article class="card-body" id="article-section">
+							<h2>This section</h2>
+						</article>
 					</div>
-					
-					<!-- This main card will hold each of the resulting articles -->
-					<article class="card-body" id="article-section">
-					</article>
 				</div>
-			</div>
-		</section>
+			</section>
+		</div>
+		<div class="col-6 news-placeholder">
+			<!-- This row will handle all of the retrieved articles -->
+			<section class="row">
+				<div class="col-md-12">
+					<br>
+					
+					<!-- This card will initially be made up of a card and wells for each of the articles retrieved -->
+					<div class="card">
+						
+						<!-- card Heading for the retrieved articles box -->
+						<div class="card-header">
+							<strong><i class="fa fa-table"></i> Top Statistics listings</strong>
+						</div>
+						
+						<!-- This main card will hold each of the resulting articles -->
+						<article class="card-body" id="article-section">
+						</article>
+					</div>
+				</div>
+			</section>
+		</div>
 	</div>
 </main>
 
