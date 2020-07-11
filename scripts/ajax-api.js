@@ -150,7 +150,16 @@ $(document).ready(function(){
       $.ajax(settings).done(function (response) {
           console.log(response);
           updatePage(response);
+
+          document.getElementById("widget").setAttribute("intrinio-widget-ticker", company);
       });
+
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+        updatePage(response);
+
+        document.getElementById("widget").setAttribute("intrinio-widget-ticker", company);
+    });
     });
 
     // Auto-suggestion function

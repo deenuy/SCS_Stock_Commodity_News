@@ -18,6 +18,14 @@
 	<!-- Custom icons CDN -->
 	<script src="https://kit.fontawesome.com/3e0c607514.js" crossorigin="anonymous"></script> 
 
+	<script type="application/javascript">
+		(function(f,i,n,t,e,c,h){f['IntrinioWidgetsObject']=e;f[e]=f[e]||function(){
+		(f[e].q=f[e].q||[]).push(arguments)},f[e].l=1*new Date();c=i.createElement(n),
+		h=i.getElementsByTagName(n)[0];c.async=1;c.src=t;h.parentNode.insertBefore(c,h)
+		})(window,document,'script','https://widget-api-cdn.intrinio.com/intrinio-widgets.min.js','iw');
+		iw('initialize', {userId: '2095ee9f024bec251fc3e8a6695cfb25bdd1271613906cd7b5125229f23d654b'});
+	 </script>
+
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="./css/style.css">
 
@@ -47,35 +55,37 @@
             </div>
 		  </div>
 		  <!-- Multi-field Searchbar for user Input for discovering stocks and commodity news -->
-          <div class="search-bar">
-            <form action="#">
-              <div class="row" style="width: 76rem;">
-                <div class="form-group col-sm-4">
-                  <input type="search" class="form-control g-font-size-16 border-0" id="auto-suggestion" style="width: 22rem;" name="search" placeholder="What are you searching for?">
-                </div>
-                <div class="form-group col-sm-3">
-                  <input type="text" class="form-control g-font-size-16 border-0" style="width: 16rem;" name="location" placeholder="Location" id="location">
-                  <label for="location" class="location"><i class="fa fa-dot-circle-o"></i></label>
-                </div>
-                <div class="form-group col-sm-3">
-                    <div class="dropdown bootstrap-select listing-categories">
-                        <select title="Categories <i class=&quot;fa fa-angle-down&quot;></i>" class="listing-categories form-control" tabindex="-98">
-                            <option class="bs-title-option" value=""></option>
-                            <option value="small">Restaurants</option>
-                            <option value="medium">Hotels</option>
-                            <option value="large">Cafes</option>
-                            <option value="x-large">Garages</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group col-lg-2">
-                    <button class="btn btn-primary g-font-size-18 g-py-12 g-px-25 search-icon" type="submit" style="height: 60px;">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </div>
-              </div>
-            </form>
-          </div>
+		  <div class="container">
+			<div class="search-bar">
+				<form action="#">
+				  <div class="row" style="width: 76rem;">
+					<div class="form-group col-sm-4">
+					  <input type="search" class="form-control g-font-size-16 border-0" id="auto-suggestion" style="width: 22rem;" name="search" placeholder="What are you searching for?">
+					</div>
+					<div class="form-group col-sm-3">
+					  <input type="text" class="form-control g-font-size-16 border-0" style="width: 16rem;" name="location" placeholder="Location" id="location">
+					  <label for="location" class="location"><i class="fa fa-dot-circle-o"></i></label>
+					</div>
+					<div class="form-group col-sm-3">
+						<div class="dropdown bootstrap-select listing-categories">
+							<select title="Categories <i class=&quot;fa fa-angle-down&quot;></i>" class="listing-categories form-control" tabindex="-98">
+								<option class="bs-title-option" value=""></option>
+								<option value="small">Restaurants</option>
+								<option value="medium">Hotels</option>
+								<option value="large">Cafes</option>
+								<option value="x-large">Garages</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-sm-2">
+						<button class="btn btn-primary g-font-size-18 g-py-12 g-px-25 search-icon" type="submit" style="height: 60px;">
+							<i class="fa fa-search"></i>
+						</button>
+					</div>
+				  </div>
+				</form>
+			  </div>
+		  </div>
         <div class="overlay"></div>
     </div>
 </header>
@@ -121,6 +131,7 @@
 						
 						<!-- This main card will hold each of the resulting articles -->
 						<article class="card-body" id="article-section">
+							<div intrinio-widget-type="small_stock_chart" id="widget" intrinio-widget-ticker="AAPL"></div>
 						</article>
 					</div>
 				</div>
