@@ -45,17 +45,18 @@
 		<!-- Searchbar for user Input for discovering stocks and commodity news -->
         <div class="g-max-width-540 mx-auto g-mb-20">
             <div class="input-group">
-              <input type="text" class="form-control g-font-size-16 border-0" id="search-term" placeholder="Search words with regular expressions..." 
-                    aria-label="Search words with regular expressions..." value="AAPL">
-              <div class="input-group-append">
-                <button class="btn btn-primary g-font-size-18 g-py-12 g-px-25 search-icon" id="run-search-01" type="submit">
-                  <i class="fa fa-search"></i>
-                </button>
-              </div>
+				<input type="text" class="form-control g-font-size-16 border-0" id="search-term" placeholder="Search here..." 
+					aria-label="Search here...">
+				<div class="suggestions"></div>
+				<div class="input-group-append">
+					<button class="btn btn-primary g-font-size-18 g-py-12 g-px-25 search-icon" id="run-search-01" type="submit">
+						<i class="fa fa-search"></i>
+					</button>
+				</div>
             </div>
 		  </div>
 		  <!-- Multi-field Searchbar for user Input for discovering stocks and commodity news -->
-		  <div class="container">
+		  <!-- <div class="container">
 			<div class="search-bar">
 				<form action="#">
 				  <div class="row" style="width: 76rem;">
@@ -85,7 +86,7 @@
 				  </div>
 				</form>
 			  </div>
-		  </div>
+		  </div> -->
         <div class="overlay"></div>
     </div>
 </header>
@@ -130,7 +131,7 @@
 						</div>
 						
 						<!-- This main card will hold each of the resulting articles -->
-						<article class="card-body" id="article-section">
+						<article class="card-body" id="article-section-2">
 							<div intrinio-widget-type="small_stock_chart" id="widget" intrinio-widget-ticker="AAPL"></div>
 						</article>
 					</div>
