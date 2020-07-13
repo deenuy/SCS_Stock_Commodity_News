@@ -16,7 +16,18 @@ body {
   filter: blur(1px);
   -webkit-filter: blur(1px);
 }
-
+.overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: #ffffff;
+  opacity: 0.45;
+  filter: aplha(opacity=50);
+  height: 540px;
+  z-index: -1;
+}
 .heading{
   z-index: 2;
   display: flex;
@@ -36,64 +47,70 @@ h1{
   font-size: 3.4rem;
   color: #19194d;
 }
-.overlay{
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  background-color: #ffffff;
-  opacity: 0.45;
-  filter: aplha(opacity=50);
-  height: 540px;
-  z-index: -1;
-}
-.input-group{
-  padding-top: 2rem;
-}
-
-.form-control{
-  padding: .8rem 1rem .6rem;
+.search-container{
+  display: block;
+  margin-top: 3rem;
+  width: 100%;
+  background: #fff;
   border-left: 0;
   border-radius: 0.5rem;
-  width: 740px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  overflow: hidden;
+}
+.search-container input{
+  width: 100%;
+  padding-left: 10px;
   height: 60px;
-  font-size: 1.4rem;
   box-sizing: border-box;
   background-color: whitesmoke;
+  border: 0;
+  font-size: 1.4rem;
+  color: #333;
 }
+.search-bar{
+  display: flex;
+  flex-direction: row;
+}
+
+.suggestions {
+  border-top: 2px solid #7a7ad4;
+  max-height: 10rem;
+  display: none;
+  z-index:10;
+}
+
+.suggestions.show {
+  display: block;
+}
+
+.suggestions > div{
+  padding: 15px;
+  font-size: 16px;
+  color: rgb(102, 102, 102);
+  border-top: 0.5px solid #c6c6f1;
+  cursor: pointer;
+  transition: all 0.5s;
+  margin-bottom: 0;
+}
+
+.suggestions > div:hover, .suggestions > div.selected {
+  background-color: #d2daf3;
+  color: #333;
+}
+
 .search-icon{
+  margin-top: 3rem;
   width: 6rem;
+  height: 60px;
   font-size: x-large;
   background-color: #333399;
   border-color: #2d2d86;
 }
-.form-group {
-  padding: .8rem 1rem .6rem;
-  border-left: 0;
-  border-radius: 0.5rem;
-  width: 740px;
-  height: 60px;
-  font-size: 1.4rem;
-  box-sizing: border-box;
-}
-.search-bar{
-  display: flex;
-  flex-wrap: wrap;
-}
 
-.listing-categories{
+.news-container {
   position: relative;
-  width: 19.2rem;
-  padding: 0;
-}
-
-/* Page 1 */
-.row {
-  padding-top: 3.5rem;
-}
-
-main {
+  padding-top: 12rem;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;

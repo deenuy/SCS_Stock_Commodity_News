@@ -7,8 +7,9 @@ $(document).ready(function(){
   var publisher = null;
   var url = null;
   var obj = null;
+  var search_symbol = null;
 
-  const searchInput = document.querySelector('#search-term');
+  const searchInput = document.querySelector('.search-input');
   const suggestionPanel = document.querySelector(".suggestions");
   var selectedSuggestionIndex = -1;
   // Main function
@@ -16,7 +17,9 @@ $(document).ready(function(){
 
   // Render auto-suggestion for displaying stock companies and symbols based on user entry in search bar
   function renderSelection(obj) {
-    var suggestionList = 6;
+    var suggestionList = 3;
+
+    suggestionPanel.classList.add('show');
 
     // Display only top 6 companies for auto suggestions
     for (var i=0; i<obj.ResultSet.Result.length; i++) {
@@ -24,7 +27,7 @@ $(document).ready(function(){
       var company_ticker = obj.ResultSet.Result[i].symbol;
 
       const div = document.createElement('div');
-      div.innerHTML = company +"("+ company_ticker  +")";
+      div.innerHTML = company +" ("+ company_ticker  +")";
       div.setAttribute('class', 'suggestion');
       suggestionPanel.append(div);
     }
@@ -137,26 +140,28 @@ $(document).ready(function(){
     
     // Listener event on user key entry in search bar for auto-suggestion of stock company and symbol
     searchInput.addEventListener('keyup', function(e){
-      const input = searchInput.value;
-
       suggestionPanel.innerHTML = '';
 
-      // Make the AJAX request to the API - GETs the JSON data at the query = input
-      var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/auto-complete?lang=en&region=US&query="+input,
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-host": "apidojo-yahoo-finance-v1.p.rapidapi.com",
-            "x-rapidapi-key": "88d999ffd3msh5b7eb7230c1ef95p1ff909jsn76383fb30752"
-        }
-      }
-      $.ajax(settings).done(function (response) {
-          renderSelection(response);
-      });
+      const input = searchInput.value;
 
-      if (input == ''){
+      if(input){
+        // Make the AJAX request to the API - GETs the JSON data at the query = input
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/auto-complete?lang=en&region=US&query="+input,
+          "method": "GET",
+          "headers": {
+              "x-rapidapi-host": "apidojo-yahoo-finance-v1.p.rapidapi.com",
+              "x-rapidapi-key": "88d999ffd3msh5b7eb7230c1ef95p1ff909jsn76383fb30752"
+          }
+        }
+        $.ajax(settings).done(function (response) {
+            renderSelection(response);
+        });
+      }
+
+      if (input === ''){
           suggestionPanel.innerHTML = '';
       }
 
@@ -181,12 +186,19 @@ $(document).ready(function(){
           selectedSuggestionIndex = -1;
           return;
       }
-      suggestionPanel.classList.add('show');
     })
 
+    // Listener on click event to display the suggestion in search bar 
     document.addEventListener('click', function(e){
       if(e.target.className === 'suggestion') {
+          // display selected company in search input value
           searchInput.value = e.target.innerHTML;
+
+          // From selected stock company from auto suggestion extract Symbol. Ex: Apple Inc. (AAPL). Result is AAPL
+          search_symbol = e.target.innerHTML;
+          search_symbol = search_symbol.split(/[()]/)[1];
+         
+          // On selection, hide suggestion list
           suggestionPanel.classList.remove('show');
       }
     })
@@ -194,17 +206,10 @@ $(document).ready(function(){
     // .on("click") function associated with the Search Button
     $("#run-search-01").click(function(event) {
       event.preventDefault();
-      console.log("Search initiated!");
-      // This line allows us to take advantage of the HTML "submit" property
-      // This way we can hit enter on the keyboard and it registers the search
-      // (in addition to clicks). Prevents the page from reloading on form submit.
-      event.preventDefault();
 
       // Empty the region associated with the articles
       clear();
 
-      // Build the query URL for the ajax request to the NYT API
-      var company = $("#search-term").val().trim();
       // var region = $("#start-year").val().trim();
       var region = 'US'
 
@@ -219,7 +224,7 @@ $(document).ready(function(){
       var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/get-news?region="+region+"&category="+company,
+        "url": "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/get-news?region="+region+"&category="+search_symbol,
         "method": "GET",
         "headers": {
             "x-rapidapi-host": "apidojo-yahoo-finance-v1.p.rapidapi.com",
@@ -230,8 +235,7 @@ $(document).ready(function(){
       $.ajax(settings).done(function (response) {
           console.log(response);
           updatePage(response);
-
-          document.getElementById("widget").setAttribute("intrinio-widget-ticker", company);
+          $("#widget").attr("intrinio-widget-ticker", search_symbol);
       });
     });
   }
