@@ -1,12 +1,11 @@
 $(document).ready(function(){
 
-  var newSummaryObj = {};
   var title = null;
   var author = null;
   var company = null;
   var publisher = null;
   var url = null;
-  var obj = null;
+  var obj = ['A'];
   var search_symbol = null;
 
   const searchInput = document.querySelector('.search-input');
@@ -15,6 +14,17 @@ $(document).ready(function(){
   // Main function
   init();
 
+  // Function to empty out the articles
+  function clear() {
+    newSummaryObj = {};
+    title = null;
+    author = null;
+    company = null;
+    publisher = null;
+    url = null;
+    obj = [];
+    $("#article-section").empty();
+  }
   // Render auto-suggestion for displaying stock companies and symbols based on user entry in search bar
   function renderSelection(obj) {
     var suggestionList = 3;
@@ -38,37 +48,10 @@ $(document).ready(function(){
       suggestionPanel.children[i].classList.remove('selected');
     }
   }
-  // Update news feed article section
-  function updatePage(stockObject) {
+  function renderNewsFeed(obj) {
     clear()
-    // Get from the form the number of results to display
-    // API doesn't have a "limit" parameter, so we have to do this ourselves
-    var numArticles = 6;
-
-    // Log the stockObject to console, where it will show up as an object
-    console.log(stockObject);
-    console.log("------------------------------------");
-
     // Loop through and build elements for the defined number of articles
-    for (var i = 0; i < numArticles; i++) {
-      // Get specific article info for current index
-      title = stockObject.items.result[i].title;
-      author = stockObject.items.result[i].author;
-      company = stockObject.items.result[i].entities[0].label;
-      publisher = stockObject.items.result[i].publisher;
-      url = stockObject.items.result[i].link;
-
-      var tmpObj = [];
-
-      tmpObj[i] = {
-        'id': i,
-        'title': title,
-        'author': author,
-        'company': company,
-        'publisher': publisher,
-        'url': ''
-      }
-      newSummaryObj.push = tmpObj[i];
+    for (var i = 0; i < obj.length; i++) {
 
       // Create the  list group to contain the articles and add the article content for each
       var $articleList = $("<ul>");
@@ -80,59 +63,78 @@ $(document).ready(function(){
       // If the article has a title, log and append to $articleList
       var $articleListItem = $("<li class='list-group-item articleHeadline'>");
 
-      if (company) {
+      if (obj[i].company) {
         $articleListItem.append(
           "<span class='label label-primary'>" +
             "<strong> " +
-            company +
+            obj[i].company +
             "</strong>"
         );
       }
 
       // If the article has a byline, log and append to $articleList
-      if (title) {
-        $articleListItem.append("<h5>" + title + "</h5>");
+      if (obj[i].title) {
+        $articleListItem.append("<h5>" + obj[i].title + "</h5>");
       }
 
       // Log section, and append to document if exists
-      if (author) {
-        $articleListItem.append("<h5>Author: " + author + "</h5>");
+      if (obj[i].author) {
+        $articleListItem.append("<h5>Author: " + obj[i].author + "</h5>");
       }
 
       // Log published date, and append to document if exists
-      if (publisher) {
-        $articleListItem.append("<h5>" + publisher + "</h5>");
+      if (obj[i].publisher) {
+        $articleListItem.append("<h5>" + obj[i].publisher + "</h5>");
       }
 
       // Append news log url
-      if (url) {
-        $articleListItem.append("<a href="+url+ ">read more.."+"</a>");
+      if (obj[i].url) {
+        $articleListItem.append("<a href="+obj[i].url+ ">read more.."+"</a>");
       }
 
       // Append the article
       $articleList.append($articleListItem);
     }
-    storeNews(newSummaryObj);
+  }
+  // Update news feed article section
+  function updatePage(stockObject) {
+    // Get from the form the number of results to display
+    var numArticles = 6;
+
+    // Loop through and build elements for the defined number of articles
+    for (var i = 0; i < numArticles; i++) {
+      // Get specific article info for current index
+      title = stockObject.items.result[i].title;
+      author = stockObject.items.result[i].author;
+      company = stockObject.items.result[i].entities[0].label;
+      publisher = stockObject.items.result[i].publisher;
+      url = stockObject.items.result[i].link;
+
+      // Construct array with news feed objects
+      obj.push({
+        'id': i,
+        'title': title,
+        'author': author,
+        'company': company,
+        'publisher': publisher,
+        'url': url
+      });
+    }
+
+    // Add to news feed to browser local storage
+    storeNews(obj);
+
+    // Render in HTML news feed
+    renderNewsFeed(obj)
   }
   // Function to store the news summary in local storage
   function storeNews(object) {
-    localStorage.setItem('newsSummary', JSON.stringify(object));
+    localStorage.setItem('scs_news_feed', JSON.stringify(object));
   }
   // render the news from local storage
   function renderNews() {
-    var obj = JSON.parse(localStorage.getItem('newsSummary'));
-    console.log('Render news')
-    console.log(obj);
-  }
-  // Function to empty out the articles
-  function clear() {
-    newSummaryObj = {};
-    title = null;
-    author = null;
-    company = null;
-    publisher = null;
-    url = null;
-    $("#article-section").empty();
+    var newsFeed = JSON.parse(localStorage.getItem('scs_news_feed'));
+    renderNewsFeed(newsFeed);
   }
   // Initializes main function
   function init() {
@@ -233,7 +235,7 @@ $(document).ready(function(){
       }
 
       $.ajax(settings).done(function (response) {
-          console.log(response);
+          // console.log(response);
           updatePage(response);
           $("#widget").attr("intrinio-widget-ticker", search_symbol);
       });
