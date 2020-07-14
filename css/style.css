@@ -40,6 +40,10 @@ h1{
   font-size: 3rem;
   font-weight: 600;
 }
+h5{
+  margin-top: 15px;
+}
+
 .headline-color{
   /* font-family: "Open Sans", Helvetica, Arial, sans-serif; */
   font-family: 'Bungee Inline', cursive;

@@ -67,7 +67,7 @@ $(document).ready(function(){
   
         if (resultObj[i].company) {
           $articleListItem.append(
-            "<span class='label label-primary'>" +
+            "<span class='label label-primary' style='background: #522399; color: #fff; padding: 0.2rem;'>" +
               "<strong> " +
               resultObj[i].company +
               "</strong>"
@@ -91,7 +91,7 @@ $(document).ready(function(){
   
         // Append news log url
         if (resultObj[i].url) {
-          $articleListItem.append("<a href="+resultObj[i].url+ ">read more.."+"</a>");
+          $articleListItem.append("<a href=" + resultObj[i].url + " target='_blank' >" + "read more.." + "</a>");
         }
   
         // Append the article
