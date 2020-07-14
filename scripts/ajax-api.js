@@ -5,8 +5,9 @@ $(document).ready(function(){
   var company = null;
   var publisher = null;
   var url = null;
-  var obj = ['A'];
+  var obj = [];
   var search_symbol = null;
+  var newSummaryObj = {};
 
   const searchInput = document.querySelector('.search-input');
   const suggestionPanel = document.querySelector(".suggestions");
@@ -26,15 +27,15 @@ $(document).ready(function(){
     $("#article-section").empty();
   }
   // Render auto-suggestion for displaying stock companies and symbols based on user entry in search bar
-  function renderSelection(obj) {
+  function renderSelection(resultObj) {
     var suggestionList = 3;
 
     suggestionPanel.classList.add('show');
 
     // Display only top 6 companies for auto suggestions
-    for (var i=0; i<obj.ResultSet.Result.length; i++) {
-      var company = obj.ResultSet.Result[i].name;
-      var company_ticker = obj.ResultSet.Result[i].symbol;
+    for (var i=0; i<resultObj.ResultSet.Result.length; i++) {
+      var company = resultObj.ResultSet.Result[i].name;
+      var company_ticker = resultObj.ResultSet.Result[i].symbol;
 
       const div = document.createElement('div');
       div.innerHTML = company +" ("+ company_ticker  +")";
@@ -48,11 +49,11 @@ $(document).ready(function(){
       suggestionPanel.children[i].classList.remove('selected');
     }
   }
-  function renderNewsFeed(obj) {
+  function renderNewsFeed(resultObj) {
     clear();
     // Loop through and build elements for the defined number of articles
-    if (obj){
-      for (var i = 0; i < obj.length; i++) {
+    if (resultObj){
+      for (var i = 0; i < resultObj.length; i++) {
 
         // Create the  list group to contain the articles and add the article content for each
         var $articleList = $("<ul>");
@@ -64,33 +65,33 @@ $(document).ready(function(){
         // If the article has a title, log and append to $articleList
         var $articleListItem = $("<li class='list-group-item articleHeadline'>");
   
-        if (obj[i].company) {
+        if (resultObj[i].company) {
           $articleListItem.append(
             "<span class='label label-primary'>" +
               "<strong> " +
-              obj[i].company +
+              resultObj[i].company +
               "</strong>"
           );
         }
   
         // If the article has a byline, log and append to $articleList
-        if (obj[i].title) {
-          $articleListItem.append("<h5>" + obj[i].title + "</h5>");
+        if (resultObj[i].title) {
+          $articleListItem.append("<h5>" + resultObj[i].title + "</h5>");
         }
   
         // Log section, and append to document if exists
-        if (obj[i].author) {
-          $articleListItem.append("<h5>Author: " + obj[i].author + "</h5>");
+        if (resultObj[i].author) {
+          $articleListItem.append("<h5>Author: " + resultObj[i].author + "</h5>");
         }
   
         // Log published date, and append to document if exists
-        if (obj[i].publisher) {
-          $articleListItem.append("<h5>" + obj[i].publisher + "</h5>");
+        if (resultObj[i].publisher) {
+          $articleListItem.append("<h5>" + resultObj[i].publisher + "</h5>");
         }
   
         // Append news log url
-        if (obj[i].url) {
-          $articleListItem.append("<a href="+obj[i].url+ ">read more.."+"</a>");
+        if (resultObj[i].url) {
+          $articleListItem.append("<a href="+resultObj[i].url+ ">read more.."+"</a>");
         }
   
         // Append the article
@@ -100,9 +101,13 @@ $(document).ready(function(){
   }
   // Update news feed article section
   function updatePage(stockObject) {
-    // Get from the form the number of results to display
+    
     var numArticles = 6;
-
+    // Get from the form the number of results to display
+    if(stockObject.items.result.length < 6){
+      numArticles = stockObject.items.result.length;
+    }
+    
     // Loop through and build elements for the defined number of articles
     for (var i = 0; i < numArticles; i++) {
       // Get specific article info for current index
@@ -239,7 +244,6 @@ $(document).ready(function(){
       $.ajax(settings).done(function (response) {
           // console.log(response);
           updatePage(response);
-          $("#widget").attr("intrinio-widget-ticker", search_symbol);
       });
       var settings = {
         "async": true,
@@ -252,10 +256,9 @@ $(document).ready(function(){
         }
       }
       
-      $.ajax(settings).done(function (response) {
-        var Statistics = response;
-        console.log(response);
-        console.log(Statistics.quoteType.shortName);
+      $.ajax(settings).done(function (response1) {
+        var Statistics = response1;
+
         $(".statistics").append($("<p>").text("Name: "+ Statistics.quoteType.shortName))
         $(".statistics").append($("<p>").text("Price: "+ Statistics.price.regularMarketOpen.raw))
         $(".statistics").append($("<p>").text("Financial Currency: "+ Statistics.earnings.financialCurrency))
