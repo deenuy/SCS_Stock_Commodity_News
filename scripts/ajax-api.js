@@ -7,7 +7,7 @@ $(document).ready(function(){
   var url = null;
   var obj = [];
   var search_symbol = null;
-  var newSummaryObj = {};
+  var newSummaryObj = [];
 
   const searchInput = document.querySelector('.search-input');
   const suggestionPanel = document.querySelector(".suggestions");
@@ -17,7 +17,7 @@ $(document).ready(function(){
 
   // Function to empty out the articles
   function clear() {
-    newSummaryObj = {};
+    newSummaryObj = [];
     title = null;
     author = null;
     company = null;
@@ -143,6 +143,29 @@ $(document).ready(function(){
     var newsFeed = JSON.parse(localStorage.getItem('scs_news_feed'));
     renderNewsFeed(newsFeed);
   }
+  function renderStockStats(stockStatsObj){
+
+    var ulEl = $("<ul>");
+
+    newSummaryObj.push({
+      'Name': stockStatsObj.quoteType.shortName,
+      'Price': stockStatsObj.price.regularMarketOpen.raw,
+      'Financial Currency': stockStatsObj.earnings.financialCurrency,
+      'Sector': stockStatsObj.summaryProfile.sector,
+      'Business Summary': stockStatsObj.summaryProfile.longBusinessSummary
+    });
+    console.log(newSummaryObj)
+
+    localStorage.setItem('scs_stock_summary', JSON.stringify(newSummaryObj));
+
+    // $(".statistics").append($("<p>").text("Name: "+ stockStatsObj.quoteType.shortName))
+    // $(".statistics").append($("<p>").text("Price: "+ stockStatsObj.price.regularMarketOpen.raw))
+    // $(".statistics").append($("<p>").text("Financial Currency: "+ stockStatsObj.earnings.financialCurrency))
+    // $(".statistics").append($("<p>").text("Sector: "+ stockStatsObj.summaryProfile.sector))
+    // $(".statistics").append($("<p>").text("Business Summary: "+ stockStatsObj.summaryProfile.longBusinessSummary))
+  
+  }
+
   // Initializes main function
   function init() {
     renderNews();
@@ -257,14 +280,14 @@ $(document).ready(function(){
       }
       
       $.ajax(settings).done(function (response1) {
-        var Statistics = response1;
+        var stockStatsObj = response1;
+        renderStockStats(response1);
 
-        $(".statistics").append($("<p>").text("Name: "+ Statistics.quoteType.shortName))
-        $(".statistics").append($("<p>").text("Price: "+ Statistics.price.regularMarketOpen.raw))
-        $(".statistics").append($("<p>").text("Financial Currency: "+ Statistics.earnings.financialCurrency))
-        $(".statistics").append($("<p>").text("Sector: "+ Statistics.summaryProfile.sector))
-        $(".statistics").append($("<p>").text("Business Summary: "+ Statistics.summaryProfile.longBusinessSummary))
-      
+        $(".statistics").append($("<p>").text("Name: "+ stockStatsObj.quoteType.shortName))
+        $(".statistics").append($("<p>").text("Price: "+ stockStatsObj.price.regularMarketOpen.raw))
+        $(".statistics").append($("<p>").text("Financial Currency: "+ stockStatsObj.earnings.financialCurrency))
+        $(".statistics").append($("<p>").text("Sector: "+ stockStatsObj.summaryProfile.sector))
+        $(".statistics").append($("<p>").text("Business Summary: "+ stockStatsObj.summaryProfile.longBusinessSummary))
       });
 
       // Get the stock charts
