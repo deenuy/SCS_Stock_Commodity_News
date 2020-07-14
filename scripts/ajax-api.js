@@ -76,17 +76,17 @@ $(document).ready(function(){
   
         // If the article has a byline, log and append to $articleList
         if (resultObj[i].title) {
-          $articleListItem.append("<h5>" + resultObj[i].title + "</h5>");
+          $articleListItem.append("<h5 class='newsHeadline'>" + resultObj[i].title + "</h5>");
         }
   
         // Log section, and append to document if exists
         if (resultObj[i].author) {
-          $articleListItem.append("<h5>Author: " + resultObj[i].author + "</h5>");
+          $articleListItem.append("<h5 class='author'>Author: " + resultObj[i].author + "</h5>");
         }
   
         // Log published date, and append to document if exists
         if (resultObj[i].publisher) {
-          $articleListItem.append("<h5>" + resultObj[i].publisher + "</h5>");
+          $articleListItem.append("<h5 class='author'>" + resultObj[i].publisher + "</h5>");
         }
   
         // Append news log url
