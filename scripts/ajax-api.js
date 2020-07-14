@@ -266,6 +266,25 @@ $(document).ready(function(){
         $(".statistics").append($("<p>").text("Business Summary: "+ Statistics.summaryProfile.longBusinessSummary))
         
       });
+
+      // Get the stock charts
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-chart?interval=1d&region=US&lang=en&range=1mo&symbol="+search_symbol,
+        "method": "GET",
+        "headers": {
+          "x-rapidapi-host": "apidojo-yahoo-finance-v1.p.rapidapi.com",
+          "x-rapidapi-key": "88d999ffd3msh5b7eb7230c1ef95p1ff909jsn76383fb30752"
+        }
+      }
+      
+      $.ajax(settings).done(function (response3) {
+        // console.log(response3.chart.result[0]);
+        if(response3.chart.result[0]){
+          localStorage.setItem('scs_stock_chart', JSON.stringify(response3.chart.result[0]));
+        }
+      });
     });
   }
 });
