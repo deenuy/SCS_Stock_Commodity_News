@@ -10,7 +10,7 @@ We would like to have the ability to search for a company and be able to learn m
 
 If we are interested in that company, we would also want to know what the company is up to and if there is any material changes or updates from that company. 
 
-# Benefits: 
+## Benefits: 
 Using the Discover Stock and Commodity things application, within one search, you will able to get a summary of the company's profile, some keypoints and the news related to it. The tool saves you the time digging around other complex tools that provides various financial news and data including stock details, quotes, press releases, financial reports that you might not need yet for deep analysis. 
 
 This Discover Stock and Commodity things tool is not made tailor to finance experts who need a wide range of data for their analysis. This tool is created to simplify the users' process and to summarize a few main datapoints for a quick inquiry into a company profile. 
