@@ -113,7 +113,32 @@
 								<article class="card-body" id="article-section-2">
 									<div class="statistics"></div>
 									<!-- <div intrinio-widget-type="small_stock_chart" id="widget" intrinio-widget-ticker="ORLC"></div> -->
-									<canvas id="chart" width="400" height="400"></canvas>
+									<!-- <canvas id="chart" width="400" height="400"></canvas> -->
+									<!-- TradingView Widget BEGIN -->
+									<div class="tradingview-widget-container">
+										<div id="basic-area-chart"></div>
+										<div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/AAPL/" rel="noopener" target="_blank"><span class="blue-text">AAPL Chart</span></a> by TradingView</div>
+										<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+										<script type="text/javascript">
+										new TradingView.widget(
+											{
+												"container_id": "basic-area-chart",
+												"width": 800,
+												"height": 350,
+												"symbol": "AAPL",
+												"interval": "D",
+												"timezone": "exchange",
+												"theme": "light",
+												"style": "3",
+												"toolbar_bg": "#f1f3f6",
+												"hide_top_toolbar": true,
+												"save_image": false,
+												"locale": "en"
+											}
+										);
+										</script>
+									</div>
+									<!-- TradingView Widget END -->
 								</article>
 							</div>
 						</div>
