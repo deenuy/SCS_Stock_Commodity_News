@@ -23,7 +23,7 @@ Hosted Url: https://deenuy.github.io/SCS_Stock_Commodity_News/
 * CSS/style.css for custom styling
 * scripts/ajax-api.js for implementaiton logic
 * scripts/stocks-chart.js for financial stock chart
-* assets/img 
+* assets/img for the images used in webpage
 
 ## Usage:
 On the main search bar, the user can type in the company name they want to learn about and hit the Search button. 
