@@ -30,7 +30,7 @@ Demo
 ![Stock Demo](assets/img/demo.gif)
 
 Credits
+
 Deenu Yadav
-Tony Facciolo
-Ahmed Khalaf
+
 Ashley Hoang
