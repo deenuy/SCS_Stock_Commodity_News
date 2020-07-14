@@ -49,51 +49,53 @@ $(document).ready(function(){
     }
   }
   function renderNewsFeed(obj) {
-    clear()
+    clear();
     // Loop through and build elements for the defined number of articles
-    for (var i = 0; i < obj.length; i++) {
+    if (obj){
+      for (var i = 0; i < obj.length; i++) {
 
-      // Create the  list group to contain the articles and add the article content for each
-      var $articleList = $("<ul>");
-      $articleList.addClass("list-group");
-
-      // Add the newly created element to the DOM
-      $("#article-section").append($articleList);
-
-      // If the article has a title, log and append to $articleList
-      var $articleListItem = $("<li class='list-group-item articleHeadline'>");
-
-      if (obj[i].company) {
-        $articleListItem.append(
-          "<span class='label label-primary'>" +
-            "<strong> " +
-            obj[i].company +
-            "</strong>"
-        );
+        // Create the  list group to contain the articles and add the article content for each
+        var $articleList = $("<ul>");
+        $articleList.addClass("list-group");
+  
+        // Add the newly created element to the DOM
+        $("#article-section").append($articleList);
+  
+        // If the article has a title, log and append to $articleList
+        var $articleListItem = $("<li class='list-group-item articleHeadline'>");
+  
+        if (obj[i].company) {
+          $articleListItem.append(
+            "<span class='label label-primary'>" +
+              "<strong> " +
+              obj[i].company +
+              "</strong>"
+          );
+        }
+  
+        // If the article has a byline, log and append to $articleList
+        if (obj[i].title) {
+          $articleListItem.append("<h5>" + obj[i].title + "</h5>");
+        }
+  
+        // Log section, and append to document if exists
+        if (obj[i].author) {
+          $articleListItem.append("<h5>Author: " + obj[i].author + "</h5>");
+        }
+  
+        // Log published date, and append to document if exists
+        if (obj[i].publisher) {
+          $articleListItem.append("<h5>" + obj[i].publisher + "</h5>");
+        }
+  
+        // Append news log url
+        if (obj[i].url) {
+          $articleListItem.append("<a href="+obj[i].url+ ">read more.."+"</a>");
+        }
+  
+        // Append the article
+        $articleList.append($articleListItem);
       }
-
-      // If the article has a byline, log and append to $articleList
-      if (obj[i].title) {
-        $articleListItem.append("<h5>" + obj[i].title + "</h5>");
-      }
-
-      // Log section, and append to document if exists
-      if (obj[i].author) {
-        $articleListItem.append("<h5>Author: " + obj[i].author + "</h5>");
-      }
-
-      // Log published date, and append to document if exists
-      if (obj[i].publisher) {
-        $articleListItem.append("<h5>" + obj[i].publisher + "</h5>");
-      }
-
-      // Append news log url
-      if (obj[i].url) {
-        $articleListItem.append("<a href="+obj[i].url+ ">read more.."+"</a>");
-      }
-
-      // Append the article
-      $articleList.append($articleListItem);
     }
   }
   // Update news feed article section
