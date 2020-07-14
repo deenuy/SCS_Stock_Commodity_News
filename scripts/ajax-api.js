@@ -261,7 +261,7 @@ $(document).ready(function(){
         $(".statistics").append($("<p>").text("Financial Currency: "+ Statistics.earnings.financialCurrency))
         $(".statistics").append($("<p>").text("Sector: "+ Statistics.summaryProfile.sector))
         $(".statistics").append($("<p>").text("Business Summary: "+ Statistics.summaryProfile.longBusinessSummary))
-        
+      
       });
     });
   }
