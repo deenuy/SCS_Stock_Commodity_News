@@ -2,6 +2,7 @@
 # SCS_Stock_Commodity_News
 
 Background
+
 As a commodity and stock market follower, I want to discover new companies and expand the horizon of my investment selections. If the company does not align with my investment criteria, I would still be able to retain the information, for daily conversations with my peers, or future investment opportunities. 
 
 There are multiple finance data providers, i.e Bloomberg, Yahoo Finance, Google Finance, TSX, and many more. These websites are often too complex for users who lack indepth finance background or it often takes too long to find some information because it provides a wide ranges of data. 
@@ -15,6 +16,7 @@ Using the Discover Stock and Commodity things application, within one search, I 
 This Discover Stock and Commodity things tool is not made tailor to finance experts who need a wide range of data for their analysis. This tool is created to simplify the users' process and to summarize a few main datapoints for a quick inquiry into a company profile. 
 
 Usage
+
 On the main search bar, the user can type in the company name they want to learn about and hit the Search button. 
 
 The region will be the default value which is US, the default language is English. 
