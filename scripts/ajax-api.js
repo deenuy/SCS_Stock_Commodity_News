@@ -17,13 +17,14 @@ $(document).ready(function(){
 
   // Function to empty out the articles
   function clear() {
-    newSummaryObj = [];
     title = null;
     author = null;
     company = null;
     publisher = null;
     url = null;
     obj = [];
+    newSummaryObj = [];
+    $(".stats").empty();
     $("#article-section").empty();
   }
   // Render auto-suggestion for displaying stock companies and symbols based on user entry in search bar
@@ -143,18 +144,43 @@ $(document).ready(function(){
     var newsFeed = JSON.parse(localStorage.getItem('scs_news_feed'));
     renderNewsFeed(newsFeed);
   }
-  function renderStockStats(stockStatsObj){
 
-    var ulEl = $("<ul>");
+  // Function to read the stock stats from local storage
+  function renderStockStats(){
+    
+    newSummaryObj = JSON.parse(localStorage.getItem('scs_stock_summary'));
+    console.log('Rendering from local storage', newSummaryObj);
+
+    // var ulEl = $("<ul>");
+    // ulEl.addClass('stockStats')
+
+    // for (var i=0; i<4; i++){
+    //   var liEl = $("<li>");
+    //   ulEl.append(liEl);
+    //   ulEl.addClass('stockStats__list'+i);
+    //   ulEl.text('Sample'+i);
+    // }
+
+    // $(".statistics").append(ulEl);
+
+    $(".statistics").append($("<p>").addClass('stats').text("Name: "+ newSummaryObj[0].Name))
+    $(".statistics").append($("<p>").addClass('stats').text("Price: "+ newSummaryObj[0].Price))
+    $(".statistics").append($("<p>").addClass('stats').text("Financial Currency: "+ newSummaryObj[0].financialCurrency))
+    $(".statistics").append($("<p>").addClass('stats').text("Sector: "+ newSummaryObj[0].sector))
+    $(".statistics").append($("<p>").addClass('stats').text("Business Summary: "+ newSummaryObj[0].longBusinessSummary))
+    
+  }
+
+  // Function to fetch attributes from API response and add to localStorage
+  function getStockStats(stockStatsObj){
 
     newSummaryObj.push({
       'Name': stockStatsObj.quoteType.shortName,
       'Price': stockStatsObj.price.regularMarketOpen.raw,
-      'Financial Currency': stockStatsObj.earnings.financialCurrency,
+      'financialCurrency': stockStatsObj.earnings.financialCurrency,
       'Sector': stockStatsObj.summaryProfile.sector,
-      'Business Summary': stockStatsObj.summaryProfile.longBusinessSummary
+      'longBusinessSummary': stockStatsObj.summaryProfile.longBusinessSummary
     });
-    console.log(newSummaryObj)
 
     localStorage.setItem('scs_stock_summary', JSON.stringify(newSummaryObj));
 
@@ -169,6 +195,7 @@ $(document).ready(function(){
   // Initializes main function
   function init() {
     renderNews();
+    renderStockStats();
     
     // Listener event on user key entry in search bar for auto-suggestion of stock company and symbol
     searchInput.addEventListener('keyup', function(e){
@@ -281,13 +308,9 @@ $(document).ready(function(){
       
       $.ajax(settings).done(function (response1) {
         var stockStatsObj = response1;
-        renderStockStats(response1);
+        getStockStats(response1);
+        renderStockStats();
 
-        $(".statistics").append($("<p>").text("Name: "+ stockStatsObj.quoteType.shortName))
-        $(".statistics").append($("<p>").text("Price: "+ stockStatsObj.price.regularMarketOpen.raw))
-        $(".statistics").append($("<p>").text("Financial Currency: "+ stockStatsObj.earnings.financialCurrency))
-        $(".statistics").append($("<p>").text("Sector: "+ stockStatsObj.summaryProfile.sector))
-        $(".statistics").append($("<p>").text("Business Summary: "+ stockStatsObj.summaryProfile.longBusinessSummary))
       });
 
       // Get the stock charts
