@@ -1,9 +1,10 @@
 
 # Discover Stock and Commodity things
 
-## Background: 
+## User Story: 
 As a commodity and stock market follower, we want to discover new companies and expand the horizon of the investment selections. If the company does not align with the investment criteria, we would still be able to retain the information, for daily conversations with the peers, or future investment opportunities. 
 
+## Background: 
 There are multiple finance data providers, i.e Bloomberg, Yahoo Finance, Google Finance, TSX, and many more. These websites are often too complex for users who lack indepth finance background or it often takes too long to find some information because it provides a wide ranges of data. 
 
 We would like to have the ability to search for a company and be able to learn more about what they do, and especially what type of commodity they trade, or simply what industry they are in.
