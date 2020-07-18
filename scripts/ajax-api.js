@@ -149,26 +149,17 @@ $(document).ready(function(){
   function renderStockStats(){
     
     newSummaryObj = JSON.parse(localStorage.getItem('scs_stock_summary'));
-    console.log('Rendering from local storage', newSummaryObj);
 
-    // var ulEl = $("<ul>");
-    // ulEl.addClass('stockStats')
-
-    // for (var i=0; i<4; i++){
-    //   var liEl = $("<li>");
-    //   ulEl.append(liEl);
-    //   ulEl.addClass('stockStats__list'+i);
-    //   ulEl.text('Sample'+i);
-    // }
-
-    // $(".statistics").append(ulEl);
-
-    $(".statistics").append($("<p>").addClass('stats').text("Name: "+ newSummaryObj[0].Name))
-    $(".statistics").append($("<p>").addClass('stats').text("Price: "+ newSummaryObj[0].Price))
-    $(".statistics").append($("<p>").addClass('stats').text("Financial Currency: "+ newSummaryObj[0].financialCurrency))
-    $(".statistics").append($("<p>").addClass('stats').text("Sector: "+ newSummaryObj[0].sector))
-    $(".statistics").append($("<p>").addClass('stats').text("Business Summary: "+ newSummaryObj[0].longBusinessSummary))
-    
+    if(newSummaryObj) {
+      console.log('Rendering from local storage', newSummaryObj);
+      $(".statistics").append($("<p>").addClass('stats').text("Name: "+ newSummaryObj[0].Name))
+      $(".statistics").append($("<p>").addClass('stats').text("Price: "+ newSummaryObj[0].Price))
+      $(".statistics").append($("<p>").addClass('stats').text("Financial Currency: "+ newSummaryObj[0].financialCurrency))
+      $(".statistics").append($("<p>").addClass('stats').text("Sector: "+ newSummaryObj[0].sector))
+      $(".statistics").append($("<p>").addClass('stats').text("Business Summary: "+ newSummaryObj[0].longBusinessSummary))
+    } else {
+      console.log('Local storage is empty');
+    }
   }
 
   // Function to fetch attributes from API response and add to localStorage
